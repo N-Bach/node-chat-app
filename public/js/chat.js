@@ -40,7 +40,6 @@ socket.on('updateUserList', users => {
   var ol = jQuery('<ol></ol>');
 
   users.forEach(function(user) {
-    console.log(user);
     ol.append(jQuery('<li></li>').text(user));
   });
 
@@ -79,7 +78,6 @@ jQuery('#message-form').on('submit', function(e) {
   socket.emit(
     'createMessage',
     {
-      from: 'User',
       text: messageTextbox.val()
     },
     function() {
@@ -106,6 +104,7 @@ locationButton.on('click', function() {
     },
     function() {
       alert('Unable to fetch location');
+      locationButton.removeAttr('disabled').text('Send Location');
     }
   );
 });
